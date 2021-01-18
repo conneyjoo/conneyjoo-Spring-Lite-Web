@@ -26,7 +26,7 @@ SpringMVC可以让接口以多态的形式表现，因此强大复杂的功能�
 
 ### handlerMapping的处理流程
 
-![](https://github.com/conneyjoo/spring-lite-web/blob/master/spring-lite-webmvc/flow.png)
+![](flow.png)
 
 request(pattern + method)组合说明
 
