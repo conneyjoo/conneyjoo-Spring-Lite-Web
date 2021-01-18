@@ -1,0 +1,27 @@
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: ["health"]
+  endpoint:
+    metrics:
+      enabled: false
+    health:
+      show-details: always
+
+ddd:
+  jwt:
+    enabled: true
+    oldVerifySupport: false
+    checkTokenEndpointUrl: http://192.168.5.61:7099/api/v1/pub/verify
+    includes:
+      - /api/v1/production/orders
+    excludes:
+  security:
+    encryption:
+      requestDecryptUriList:
+        - GET:/api-noexist
+        - GET:/api/v1/users/*

@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: ["health"]
+  endpoint:
+    metrics:
+      enabled: false
+    health:
+      show-details: always
+
+ddd:
+  jwt:
+    enabled: true
+    oldVerifySupport: false
+    checkTokenEndpointUrl: http://192.168.5.61:7099/api/v1/pub/verify
+    includes:
+      - /api/v1/production/orders
+    excludes:
+  security:
+    encryption:
+      requestDecryptUriList:
+        - GET:/api-noexist
+        - GET:/api/v1/users/*
+
+zuul:
+  ignoredServices: '*'
+  ribbonIsolationStrategy: SEMAPHORE
+  semaphore:
+    max-semaphores: 1000
+  host:
+    maxTotalConnections: 1500
+    maxPerRouteConnections: 500
+  routes:
+    user-contacts:
+      path: /api/v1/users/{userId}/contacts/
+      url: http://192.168.5.78:7081
+      stripPrefix: false
+    user-groups:
+      path: /api/v1/users/{userId}/contacts/groups/**
+      url: http://192.168.5.78:7081
+      stripPrefix: false

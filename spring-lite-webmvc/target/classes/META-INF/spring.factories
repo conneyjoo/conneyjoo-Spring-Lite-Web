@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xhtech.springframework.lite.web.servlet.config.annotation.LiteWebMvcConfiguration
